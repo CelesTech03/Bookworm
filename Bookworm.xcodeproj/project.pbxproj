@@ -9,23 +9,31 @@
 /* Begin PBXBuildFile section */
 		AA4D2AC42915E94C00A936D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */; };
 		AA4D2AC62915E94C00A936D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */; };
-		AA4D2AC82915E94C00A936D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC72915E94C00A936D7 /* ViewController.swift */; };
+		AA4D2AC82915E94C00A936D7 /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */; };
 		AA4D2ACB2915E94C00A936D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4D2AC92915E94C00A936D7 /* Main.storyboard */; };
 		AA4D2ACE2915E94C00A936D7 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2ACC2915E94C00A936D7 /* Bookworm.xcdatamodeld */; };
 		AA4D2AD02915E94D00A936D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */; };
 		AA4D2AD32915E94D00A936D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */; };
+		AAFC33EF2917134A0036BD54 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33EE2917134A0036BD54 /* BookCell.swift */; };
+		AAFC33F1291723850036BD54 /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */; };
+		AAFC33F329172F4B0036BD54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33F229172F4B0036BD54 /* SearchViewController.swift */; };
+		AAFC33F52917398A0036BD54 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA4D2AC02915E94C00A936D7 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA4D2AC72915E94C00A936D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
 		AA4D2ACA2915E94C00A936D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA4D2ACD2915E94C00A936D7 /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
 		AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA4D2AD22915E94D00A936D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4D2AD42915E94D00A936D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAFC33EE2917134A0036BD54 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
+		AAFC33F229172F4B0036BD54 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +68,11 @@
 			children = (
 				AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */,
 				AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */,
-				AA4D2AC72915E94C00A936D7 /* ViewController.swift */,
+				AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */,
+				AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */,
+				AAFC33EE2917134A0036BD54 /* BookCell.swift */,
+				AAFC33F229172F4B0036BD54 /* SearchViewController.swift */,
+				AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */,
 				AA4D2AC92915E94C00A936D7 /* Main.storyboard */,
 				AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */,
 				AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */,
@@ -141,10 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA4D2AC82915E94C00A936D7 /* ViewController.swift in Sources */,
+				AA4D2AC82915E94C00A936D7 /* BooksViewController.swift in Sources */,
+				AAFC33F329172F4B0036BD54 /* SearchViewController.swift in Sources */,
+				AAFC33F52917398A0036BD54 /* FavoritesViewController.swift in Sources */,
 				AA4D2ACE2915E94C00A936D7 /* Bookworm.xcdatamodeld in Sources */,
 				AA4D2AC42915E94C00A936D7 /* AppDelegate.swift in Sources */,
 				AA4D2AC62915E94C00A936D7 /* SceneDelegate.swift in Sources */,
+				AAFC33F1291723850036BD54 /* BookDetailsViewController.swift in Sources */,
+				AAFC33EF2917134A0036BD54 /* BookCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +313,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,8 +341,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
