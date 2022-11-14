@@ -9,14 +9,12 @@ import UIKit
 
 class BookDetailsViewController: UIViewController {
     
-    
     @IBOutlet weak var bookImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        bookImage.image = UIImage(named: "alchemist.png")
     }
     
     
