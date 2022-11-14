@@ -49,9 +49,13 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! BookCell
+        let cellIdentifier = "BookCell"
         
-        let book = books[indexPath.row]["volumeInfo"] as! [String: Any]
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: cellIdentifier,
+            for: indexPath) as! BookCell
+        
+        let book = books[indexPath.row]["volumeInfo"] as! [String:Any]
         let title = book["title"] as? String
         let authors = book["publisher"] as? String
         let rating = book["publishedDate"] as? String
