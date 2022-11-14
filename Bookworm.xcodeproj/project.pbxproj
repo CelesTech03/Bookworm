@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1E1FEB2922AF15005EF39E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1FEA2922AF15005EF39E /* SearchResult.swift */; };
 		AA4D2AC42915E94C00A936D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */; };
 		AA4D2AC62915E94C00A936D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */; };
 		AA4D2AC82915E94C00A936D7 /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA1E1FEA2922AF15005EF39E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		AA4D2AC02915E94C00A936D7 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */,
 				AAFC33EE2917134A0036BD54 /* BookCell.swift */,
 				AAFC33F229172F4B0036BD54 /* SearchViewController.swift */,
+				AA1E1FEA2922AF15005EF39E /* SearchResult.swift */,
 				AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */,
 				AA4D2AC92915E94C00A936D7 /* Main.storyboard */,
 				AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4D2AC82915E94C00A936D7 /* BooksViewController.swift in Sources */,
+				AA1E1FEB2922AF15005EF39E /* SearchResult.swift in Sources */,
 				AAFC33F329172F4B0036BD54 /* SearchViewController.swift in Sources */,
 				AAFC33F52917398A0036BD54 /* FavoritesViewController.swift in Sources */,
 				AA4D2ACE2915E94C00A936D7 /* Bookworm.xcdatamodeld in Sources */,

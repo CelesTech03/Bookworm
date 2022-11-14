@@ -9,7 +9,7 @@ import UIKit
 
 class BooksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var books = [NSDictionary]()
+    var books = [[String: Any]]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,7 +30,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
-                self.books = dataDictionary["items"] as! [NSDictionary]
+                self.books = dataDictionary["items"] as! [[String: Any]]
                 
                 self.tableView.reloadData()
                 // TODO: Get the array of books
@@ -51,9 +51,18 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! BookCell
         
-        let book = books[indexPath.row]["volumeInfo"] as! NSDictionary
+        let book = books[indexPath.row]["volumeInfo"] as! [String: Any]
         let title = book["title"] as? String
+        let authors = book["publisher"] as? String
+        let rating = book["publishedDate"] as? String
         cell.titleLabel.text = title
+        cell.authorLabel.text = authors
+        cell.ratingLabel.text = rating
+        
+        
+        let image = book["imageLinks"]
+        let imagePath = ["smallThumbnail"]
+        
         cell.bookImage.image = UIImage(named: "alchemist.png")
         
         return cell

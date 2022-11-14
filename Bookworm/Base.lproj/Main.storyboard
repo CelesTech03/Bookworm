@@ -58,7 +58,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Author)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6T-23-hgp">
-                                                    <rect key="frame" x="131" y="43" width="242" height="21"/>
+                                                    <rect key="frame" x="131" y="43" width="242" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -74,7 +74,7 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="favor-icon"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Average Rating)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fva-p7-7yO">
-                                                    <rect key="frame" x="131" y="72" width="242" height="21"/>
+                                                    <rect key="frame" x="131" y="86" width="242" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -180,17 +180,21 @@
             </objects>
             <point key="canvasLocation" x="1105" y="-209"/>
         </scene>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="hEZ-oq-mIm">
             <objects>
-                <viewController id="uU8-6l-Pg0" customClass="SearchViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uU8-6l-Pg0" userLabel="Search View Controller" customClass="SearchViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CYN-mQ-1Tt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yZD-he-p4o">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yZD-he-p4o">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="uU8-6l-Pg0" id="dh9-vh-v0J"/>
+                                    <outlet property="delegate" destination="uU8-6l-Pg0" id="acP-7j-21v"/>
+                                </connections>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Title, Author" translatesAutoresizingMaskIntoConstraints="NO" id="q7l-st-CEX">
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
@@ -241,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="2145.801526717557" y="-209.1549295774648"/>
         </scene>
-        <!--Favorites-->
+        <!--Favorites View Controller-->
         <scene sceneID="92d-QJ-xPi">
             <objects>
-                <viewController id="XV3-cT-eZk" customClass="FavoritesViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XV3-cT-eZk" userLabel="Favorites View Controller" customClass="FavoritesViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M5X-hP-jNs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
