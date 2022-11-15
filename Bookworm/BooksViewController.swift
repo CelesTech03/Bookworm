@@ -20,7 +20,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         // Do any additional setup after loading the view.
         
-        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=programming")!
+        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=swift+programming&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA&maxResults=25")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -33,10 +33,6 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.books = dataDictionary["items"] as! [[String: Any]]
                 
                 self.tableView.reloadData()
-                // TODO: Get the array of books
-                // TODO: Store the books in a property to use elsewhere
-                // TODO: Reload the table view data
-                
             }
         }
         task.resume()
@@ -55,25 +51,63 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             withIdentifier: cellIdentifier,
             for: indexPath) as! BookCell
         
-        let book = books[indexPath.row]["volumeInfo"] as! [String:Any]
+        let book = books[indexPath.row]["volumeInfo"] as! [String: Any]
         let title = book["title"] as? String
-        let authors = book["publisher"] as? String
-        let rating = book["publishedDate"] as? String
+        let authors = book["authors"] as? String
+        
+        //        var author = ""
+        //        for i in authors {
+        //            author += (i)
+        //        }
+        
+        let publisher = book["publisher"] as? String
+        //        let baseUrl = book["imageLinks"] as? String
+        //        let url = URL(string: imagePath)
+        
         cell.titleLabel.text = title
         cell.authorLabel.text = authors
-        cell.ratingLabel.text = rating
-        
-        
-        let image = book["imageLinks"]
-        let imagePath = ["smallThumbnail"]
+        cell.publisherLabel.text = publisher
+        //        cell.bookImage.downloaded(from: url!)
         
         cell.bookImage.image = UIImage(named: "alchemist.png")
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Find selected book
+        let cell = sender as! UITableViewCell
+        
+        let indexPath = tableView.indexPath(for: cell)!
+        let book = books[indexPath.row]["volumeInfo"]
+        
+        // Pass selected book to the book details view controller
+        let detailsViewController = segue.destination as! BookDetailsViewController
+        detailsViewController.book = book as? [String:Any]
+        
+        // Deselects row once tapped
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+            else { return }
+            DispatchQueue.main.async() { [weak self] in
+                self?.image = image
+            }
+        }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
+    }
+}

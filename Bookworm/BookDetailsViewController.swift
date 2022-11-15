@@ -10,11 +10,26 @@ import UIKit
 class BookDetailsViewController: UIViewController {
     
     @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorsLabel: UILabel!
+    @IBOutlet weak var pageCountLabel: UILabel!
+    @IBOutlet weak var publishedDateLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var book: [String:Any]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        bookImage.image = UIImage(named: "alchemist.png")
+        titleLabel.text = book["title"] as? String
+        authorsLabel.text = book["authors"] as? String
+        pageCountLabel.text = book["pageCount"] as? String
+        publishedDateLabel.text = book["publishedDate"] as? String
+        publisherLabel.text = book["publisher"] as? String
+        descriptionLabel.text = book["description"] as? String
     }
     
     

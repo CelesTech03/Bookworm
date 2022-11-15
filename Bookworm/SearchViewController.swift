@@ -23,11 +23,11 @@ class SearchViewController: UIViewController {
         // Makes Table View first row visible
         tableView.contentInset = UIEdgeInsets(top: 51, left: 0, bottom: 0, right: 0)
         
-        // search result nib
+        // Search result nib
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
         
-        // no results nib
+        // No results nib
         cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.register(
             cellNib,
@@ -38,7 +38,38 @@ class SearchViewController: UIViewController {
         struct CellIdentifiers {
             static let searchResultCell = "SearchResultCell"
             static let nothingFoundCell = "NothingFoundCell"
-            
+        }
+    }
+    
+    // MARK: - Helper Methods
+    func booksURL(searchText: String) -> URL {
+        let encodedText = searchText.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let urlString = String(
+            format: "https://www.googleapis.com/books/v1/volumes?q=%@"+searchText+"&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA",
+            encodedText)
+        let url = URL(string: urlString)
+        return url!
+    }
+    
+    func performBookRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(
+                ResultArray.self, from: data)
+            return result.items
+        } catch {
+            print("JSON Error: \(error)")
+            return []
         }
     }
     
@@ -48,17 +79,21 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        searchResults = []
-        if searchBar.text! != "Error result" {
-            for i in 0...2 {
-                let searchResult = SearchResult()
-                searchResult.title = String(format: "Fake Result %d for", i)
-                searchResult.authors = searchBar.text!
-                searchResults.append(searchResult)
+        if !searchBar.text!.isEmpty {
+            searchBar.resignFirstResponder()
+            
+            hasSearched = true
+            searchResults = []
+            
+            let url = booksURL(searchText: searchBar.text!)
+            print("URL: '\(url)'")
+            
+            if let data = performBookRequest(with: url) {
+                let items = parse(data: data)
+                print("Got results: '\(items)'")
             }
+            tableView.reloadData()
         }
-        hasSearched = true
-        tableView.reloadData()
     }
     
     // Unifies status bar area with search bar
