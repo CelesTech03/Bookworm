@@ -7,17 +7,39 @@
 
 import Foundation
 
-class ResultArray: Codable {
-    var totalItems = 0
-    var items = [SearchResult]()
+func < (lhs: BookItem, rhs: BookItem) -> Bool {
+    return lhs.volumeInfo.title.localizedStandardCompare(rhs.volumeInfo.title) == .orderedAscending
 }
 
-class SearchResult: Codable {
+struct ResultArray: Codable {
+    var totalItems = 0
+    var items: [BookItem]
+}
+
+struct BookItem: Codable {
+    //    var id: String
+    let volumeInfo: SearchResult
+}
+
+struct SearchResult: Codable {
+    //    , CustomStringConvertible
+    //    var description: String {
+    //        return "\nResult - Name: \(title)), Artist Name: \(authors)"
+    //    }
     
-    var authors: String? = ""
-    var title: String? = ""
+    let title: String
+    let subtitle: String?
+    let authors: [String]
+    let publisher: String?
+    let publishedDate: String?
+    let description: String?
+    let pageCount: Int?
+    let averageRating: Double?
+    let imageLinks: ImageLinks
+    //    var description: String? = ""
     
-    var name: String {
-        return title ?? ""
-    }
+}
+
+struct ImageLinks: Codable {
+    let smallThumbnail, thumbnail: String
 }

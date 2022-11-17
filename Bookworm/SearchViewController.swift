@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var searchResults = [SearchResult]()
+    var searchResults = [BookItem]()
     var hasSearched = false
     
     override func viewDidLoad() {
@@ -46,22 +46,13 @@ class SearchViewController: UIViewController {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(
-            format: "https://www.googleapis.com/books/v1/volumes?q=%@"+searchText+"&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA",
+            format: "https://www.googleapis.com/books/v1/volumes?q="+searchText+"&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA",
             encodedText)
         let url = URL(string: urlString)
         return url!
     }
     
-    func performBookRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
-    func parse(data: Data) -> [SearchResult] {
+    func parse(data: Data) -> [BookItem] {
         do {
             let decoder = JSONDecoder()
             let result = try decoder.decode(
@@ -71,6 +62,30 @@ class SearchViewController: UIViewController {
             print("JSON Error: \(error)")
             return []
         }
+    }
+    
+    func performBookRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            showNetworkError()
+            return nil
+        }
+    }
+    
+    // Error handling
+    func showNetworkError() {
+        let alert = UIAlertController(
+            title: "Whoops...",
+            message: "There was an error accessing Google Books." +
+            " Please try again.",
+            preferredStyle: .alert)
+        
+        let action = UIAlertAction(
+            title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -89,8 +104,9 @@ extension SearchViewController: UISearchBarDelegate {
             print("URL: '\(url)'")
             
             if let data = performBookRequest(with: url) {
-                let items = parse(data: data)
-                print("Got results: '\(items)'")
+                searchResults = parse(data: data)
+                // Sorts search results
+                searchResults.sort(by: <)
             }
             tableView.reloadData()
         }
@@ -101,6 +117,7 @@ extension SearchViewController: UISearchBarDelegate {
         return .topAttached
     }
 }
+
 
 // MARK: - Table View Delegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -133,9 +150,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                                                         TableView.CellIdentifiers.searchResultCell,
                                                      for: indexPath) as! SearchResultCell
             
-            let searchResult = searchResults[indexPath.row]
+            let searchResult = searchResults[indexPath.row].volumeInfo
             cell.titleLabel.text = searchResult.title
-            cell.authorsLabel.text = searchResult.authors
+            if searchResult.authors.isEmpty {
+                cell.authorsLabel.text = "Unknown"
+            } else {
+                cell.authorsLabel.text = String(
+                    format: "%@ (%@)",
+                    searchResult.authors[0],
+                    searchResult.publishedDate!)
+            }
             return cell
         }
     }

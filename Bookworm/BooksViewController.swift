@@ -9,7 +9,7 @@ import UIKit
 
 class BooksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var books = [[String: Any]]()
+    var books = [[String: AnyObject]]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,7 +30,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
-                self.books = dataDictionary["items"] as! [[String: Any]]
+                self.books = dataDictionary["items"] as! [[String: AnyObject]]
                 
                 self.tableView.reloadData()
             }
@@ -45,28 +45,26 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "BookCell"
-        
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellIdentifier,
-            for: indexPath) as! BookCell
+            withIdentifier: "BookCell") as! BookCell
         
-        let book = books[indexPath.row]["volumeInfo"] as! [String: Any]
-        let title = book["title"] as? String
-        let authors = book["authors"] as? String
+        let book = books[indexPath.row]
+        cell.titleLabel.text = book["volumeInfo"]?["title"] as? String
+        if let authorArray = book["volumeInfo"]?["authors"] as? NSArray{
+            cell.authorLabel.text = authorArray[0] as? String
+        }
+        cell.publisherLabel.text = book["volumeInfo"]?["publisher"] as? String
+        //        if let imgArray = book["volumeInfo"]?["imgLinks"] as? NSArray{
+        //            cell.authorLabel.text = imgArray[0] as? String
+        //           }
         
-        //        var author = ""
-        //        for i in authors {
-        //            author += (i)
-        //        }
-        
-        let publisher = book["publisher"] as? String
+        //        let publisher = book?["publisher"] as? String
         //        let baseUrl = book["imageLinks"] as? String
         //        let url = URL(string: imagePath)
         
-        cell.titleLabel.text = title
-        cell.authorLabel.text = authors
-        cell.publisherLabel.text = publisher
+        //        cell.titleLabel.text = title
+        //        cell.authorLabel.text = authors
+        //        cell.publisherLabel.text = publisher
         //        cell.bookImage.downloaded(from: url!)
         
         cell.bookImage.image = UIImage(named: "alchemist.png")
