@@ -9,7 +9,7 @@ import UIKit
 
 class BooksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var books = [[String: AnyObject]]()
+    var books = [[String: Any]]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,7 +20,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         // Do any additional setup after loading the view.
         
-        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=swift+programming&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA&maxResults=25")!
+        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=stephen+king&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA&maxResults=30")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -30,7 +30,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
-                self.books = dataDictionary["items"] as! [[String: AnyObject]]
+                self.books = dataDictionary["items"] as! [[String : Any]]
                 
                 self.tableView.reloadData()
             }
@@ -48,26 +48,20 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "BookCell") as! BookCell
         
-        let book = books[indexPath.row]
-        cell.titleLabel.text = book["volumeInfo"]?["title"] as? String
-        if let authorArray = book["volumeInfo"]?["authors"] as? NSArray{
+        let book = books[indexPath.row]["volumeInfo"] as? [String : Any]
+        
+        cell.titleLabel.text = book?["title"] as? String
+        
+        if let authorArray = book?["authors"] as? NSArray{
             cell.authorLabel.text = authorArray[0] as? String
         }
-        cell.publisherLabel.text = book["volumeInfo"]?["publisher"] as? String
-        //        if let imgArray = book["volumeInfo"]?["imgLinks"] as? NSArray{
-        //            cell.authorLabel.text = imgArray[0] as? String
-        //           }
         
-        //        let publisher = book?["publisher"] as? String
-        //        let baseUrl = book["imageLinks"] as? String
-        //        let url = URL(string: imagePath)
+        cell.publisherLabel.text = book?["publisher"] as? String
         
-        //        cell.titleLabel.text = title
-        //        cell.authorLabel.text = authors
-        //        cell.publisherLabel.text = publisher
-        //        cell.bookImage.downloaded(from: url!)
-        
-        cell.bookImage.image = UIImage(named: "alchemist.png")
+        if let imgD = book?["imageLinks"] as? NSDictionary{
+            let url = URL(string: imgD["thumbnail"] as! String)
+            cell.bookImage.downloaded(from: url!)
+        }
         
         return cell
     }
@@ -77,11 +71,11 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = sender as! UITableViewCell
         
         let indexPath = tableView.indexPath(for: cell)!
-        let book = books[indexPath.row]["volumeInfo"]
+        let book = books[indexPath.row]["volumeInfo"] as? [String:Any]
         
         // Pass selected book to the book details view controller
         let detailsViewController = segue.destination as! BookDetailsViewController
-        detailsViewController.book = book as? [String:Any]
+        detailsViewController.book = book
         
         // Deselects row once tapped
         tableView.deselectRow(at: indexPath, animated: true)
@@ -90,6 +84,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
 }
 
 extension UIImageView {
+    
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in

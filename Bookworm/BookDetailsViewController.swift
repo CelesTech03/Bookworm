@@ -23,7 +23,10 @@ class BookDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        bookImage.image = UIImage(named: "alchemist.png")
+        if let imgD = book?["imageLinks"] as? NSDictionary{
+            let url = URL(string: imgD["thumbnail"] as! String)
+            bookImage.downloaded(from: url!)
+        }
         titleLabel.text = book["title"] as? String
         authorsLabel.text = book["authors"] as? String
         pageCountLabel.text = book["pageCount"] as? String
