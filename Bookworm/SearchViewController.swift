@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
     var searchResults = [BookItem]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,21 @@ class SearchViewController: UIViewController {
             static let loadingCell = "LoadingCell"
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Find selected book
+//        let cell = sender as! UITableViewCell
+//
+//        let indexPath = tableView.indexPath(for: cell)!
+//        let book = searchResults[indexPath.row].volumeInfo
+//
+//        // Pass selected book to the book details view controller
+//        let detailsViewController = segue.destination as! BookDetailsViewController
+//        detailsViewController.book = book
+//
+//        // Deselects row once tapped
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
     
     // MARK: - Helper Methods
     func booksURL(searchText: String) -> URL {
@@ -96,6 +112,7 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel()
             isLoading = true
             tableView.reloadData()
             
@@ -109,11 +126,11 @@ extension SearchViewController: UISearchBarDelegate {
             // Get a shared URLSession instance
             let session = URLSession.shared
             // Creates a data task which are for fetching the contents of a given URL
-            let dataTask = session.dataTask(with: url)
+            dataTask = session.dataTask(with: url)
             {data, response, error in
                 // Error handling
-                if let error = error {
-                    print("Failure! \(error.localizedDescription)")
+                if let error = error as NSError?, error.code == -999 {
+                    return  // Search was cancelled
                 } else if let httpResponse = response as? HTTPURLResponse,
                           httpResponse.statusCode == 200 {
                     // Parses received JSON data
@@ -137,7 +154,7 @@ extension SearchViewController: UISearchBarDelegate {
                 }
             }
             // Call resume() to start the data task
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
     
@@ -195,15 +212,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                                                      for: indexPath) as! SearchResultCell
             
             let searchResult = searchResults[indexPath.row].volumeInfo
-            cell.titleLabel.text = searchResult.title
-            if searchResult.authors.isEmpty {
-                cell.authorsLabel.text = "Unknown"
-            } else {
-                cell.authorsLabel.text = String(
-                    format: "%@ (%@)",
-                    searchResult.authors.joined(separator: ", "),
-                    searchResult.publishedDate!)
-            }
+            // Sets labels on search result cells
+            cell.configure(for: searchResult)
             return cell
         }
     }

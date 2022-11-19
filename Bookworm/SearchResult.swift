@@ -22,10 +22,6 @@ struct BookItem: Codable {
 }
 
 struct SearchResult: Codable {
-    //    , CustomStringConvertible
-    //    var description: String {
-    //        return "\nResult - Name: \(title)), Artist Name: \(authors)"
-    //    }
     
     let title: String
     let subtitle: String?

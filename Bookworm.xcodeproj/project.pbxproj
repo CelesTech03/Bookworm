@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA0EBF30292971ED005C7F6C /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */; };
+		AA0EBF322929935F005C7F6C /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */; };
 		AA1E1FEB2922AF15005EF39E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1FEA2922AF15005EF39E /* SearchResult.swift */; };
 		AA1E1FED2922BC3C005EF39E /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */; };
 		AA1E1FEF2922C83A005EF39E /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		AA1E1FEA2922AF15005EF39E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */,
 				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
 				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
+				AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */,
 			);
 			path = Bookworm;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				AA4D2AC62915E94C00A936D7 /* SceneDelegate.swift in Sources */,
 				AAFC33F1291723850036BD54 /* BookDetailsViewController.swift in Sources */,
 				AAFC33EF2917134A0036BD54 /* BookCell.swift in Sources */,
+				AA0EBF322929935F005C7F6C /* UIImageView+DownloadImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
