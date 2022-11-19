@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0EBF30292971ED005C7F6C /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */; };
 		AA1E1FEB2922AF15005EF39E /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1FEA2922AF15005EF39E /* SearchResult.swift */; };
 		AA1E1FED2922BC3C005EF39E /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */; };
 		AA1E1FEF2922C83A005EF39E /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		AA1E1FEA2922AF15005EF39E /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */,
 				AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */,
 				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
+				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
 			);
 			path = Bookworm;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			files = (
 				AA4D2AD32915E94D00A936D7 /* LaunchScreen.storyboard in Resources */,
 				AA4D2AD02915E94D00A936D7 /* Assets.xcassets in Resources */,
+				AA0EBF30292971ED005C7F6C /* LoadingCell.xib in Resources */,
 				AA1E1FED2922BC3C005EF39E /* SearchResultCell.xib in Resources */,
 				AA1E1FF12922CDF7005EF39E /* NothingFoundCell.xib in Resources */,
 				AA4D2ACB2915E94C00A936D7 /* Main.storyboard in Resources */,
@@ -331,6 +335,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +364,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

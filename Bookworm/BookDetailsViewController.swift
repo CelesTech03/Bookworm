@@ -27,8 +27,16 @@ class BookDetailsViewController: UIViewController {
             let url = URL(string: imgD["thumbnail"] as! String)
             bookImage.downloaded(from: url!)
         }
+        
         titleLabel.text = book["title"] as? String
-        authorsLabel.text = book["authors"] as? String
+        var author = ""
+        if let authorArray = book?["authors"] as? NSArray{
+            for i in authorArray {
+                author += (i as? String)! + " "
+            }
+        }
+        authorsLabel.text = author
+        
         pageCountLabel.text = book["pageCount"] as? String
         publishedDateLabel.text = book["publishedDate"] as? String
         publisherLabel.text = book["publisher"] as? String

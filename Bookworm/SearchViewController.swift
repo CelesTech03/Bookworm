@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     
     var searchResults = [BookItem]()
     var hasSearched = false
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +24,29 @@ class SearchViewController: UIViewController {
         // Makes Table View first row visible
         tableView.contentInset = UIEdgeInsets(top: 51, left: 0, bottom: 0, right: 0)
         
+        // Code to register nibs
         // Search result nib
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
-        
         // No results nib
         cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.register(
             cellNib,
             forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
+        // Loading nib
+        cellNib = UINib(
+            nibName: TableView.CellIdentifiers.loadingCell,
+            bundle: nil)
+        tableView.register(
+            cellNib,
+            forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
     }
     
     struct TableView {
         struct CellIdentifiers {
             static let searchResultCell = "SearchResultCell"
             static let nothingFoundCell = "NothingFoundCell"
+            static let loadingCell = "LoadingCell"
         }
     }
     
@@ -46,7 +55,7 @@ class SearchViewController: UIViewController {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(
-            format: "https://www.googleapis.com/books/v1/volumes?q="+searchText+"&key=AIzaSyBSXB3F8Z32lv8xH23G93_7-xUTIli4oLA",
+            format: "https://www.googleapis.com/books/v1/volumes?q="+searchText,
             encodedText)
         let url = URL(string: urlString)
         return url!
@@ -97,18 +106,31 @@ extension SearchViewController: UISearchBarDelegate {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             
+            isLoading = true
+            tableView.reloadData()
+            
+            
             hasSearched = true
             searchResults = []
-            
-            let url = booksURL(searchText: searchBar.text!)
-            print("URL: '\(url)'")
-            
-            if let data = performBookRequest(with: url) {
-                searchResults = parse(data: data)
-                // Sorts search results
-                searchResults.sort(by: <)
+            // Makes web service requests asynchronous
+            // Gets a reference to global queue
+            let queue = DispatchQueue.global()
+            let url = self.booksURL(searchText: searchBar.text!)
+            // Dispatches a closure on queue. Code inside closure will be executed asynchronously
+            queue.async {
+                
+                if let data = self.performBookRequest(with: url) {
+                    self.searchResults = self.parse(data: data)
+                    self.searchResults.sort(by: <)
+                    
+                    // Schedules a new closure on the main queue
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+                    return
+                }
             }
-            tableView.reloadData()
         }
     }
     
@@ -125,7 +147,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        if !hasSearched {
+        
+        // If search is loading
+        if isLoading {
+            return 1
+            // If no results
+        } else if !hasSearched {
             return 0
         } else if searchResults.count == 0 {
             return 1
@@ -139,12 +166,22 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         
-        // If no search results, return "No results" cell
+        // If search results is in the process of loading, show loading nib cell
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableView.CellIdentifiers.loadingCell,
+                for: indexPath)
+            
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            return cell
+        } else
+        // If no search results, return "No results" nib cell
         if searchResults.count == 0 {
             return tableView.dequeueReusableCell(
                 withIdentifier: TableView.CellIdentifiers.nothingFoundCell,
                 for: indexPath)
-            // else, return search result cell
+            // else, return search result nib cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier:
                                                         TableView.CellIdentifiers.searchResultCell,
@@ -157,7 +194,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.authorsLabel.text = String(
                     format: "%@ (%@)",
-                    searchResult.authors[0],
+                    searchResult.authors.joined(separator: ", "),
                     searchResult.publishedDate!)
             }
             return cell
@@ -175,7 +212,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         _ tableView: UITableView,
         willSelectRowAt indexPath: IndexPath
     ) -> IndexPath? {
-        if searchResults.count == 0 {
+        
+        // Disallows selecting no result or is loading cells
+        if searchResults.count == 0 || isLoading {
             return nil
         } else {
             return indexPath
