@@ -73,16 +73,6 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func performBookRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            showNetworkError()
-            return nil
-        }
-    }
-    
     // Error handling
     func showNetworkError() {
         let alert = UIAlertController(
@@ -112,25 +102,42 @@ extension SearchViewController: UISearchBarDelegate {
             
             hasSearched = true
             searchResults = []
+            
             // Makes web service requests asynchronous
-            // Gets a reference to global queue
-            let queue = DispatchQueue.global()
-            let url = self.booksURL(searchText: searchBar.text!)
-            // Dispatches a closure on queue. Code inside closure will be executed asynchronously
-            queue.async {
-                
-                if let data = self.performBookRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort(by: <)
-                    
-                    // Schedules a new closure on the main queue
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
+            // Creates URL object
+            let url = booksURL(searchText: searchBar.text!)
+            // Get a shared URLSession instance
+            let session = URLSession.shared
+            // Creates a data task which are for fetching the contents of a given URL
+            let dataTask = session.dataTask(with: url)
+            {data, response, error in
+                // Error handling
+                if let error = error {
+                    print("Failure! \(error.localizedDescription)")
+                } else if let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200 {
+                    // Parses received JSON data
+                    if let data = data {
+                        self.searchResults = self.parse(data: data)
+                        self.searchResults.sort(by: <)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
                     }
-                    return
+                } else {
+                    print("Failure! \(response!)")
+                }
+                DispatchQueue.main.async {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
                 }
             }
+            // Call resume() to start the data task
+            dataTask.resume()
         }
     }
     
