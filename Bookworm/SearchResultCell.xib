@@ -26,8 +26,8 @@
                         </constraints>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goH-nE-TpT">
-                        <rect key="frame" x="84" y="16" width="293" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goH-nE-TpT">
+                        <rect key="frame" x="84" y="16" width="293" height="21.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -44,8 +44,8 @@
                     <constraint firstAttribute="trailing" secondItem="POP-NA-pcQ" secondAttribute="trailing" constant="16" id="DXj-z3-rrQ"/>
                     <constraint firstItem="goH-nE-TpT" firstAttribute="leading" secondItem="jhP-tf-lzL" secondAttribute="trailing" constant="8" id="H53-3Y-BUY"/>
                     <constraint firstAttribute="bottom" secondItem="POP-NA-pcQ" secondAttribute="bottom" constant="16" id="Kg1-K0-ZkR"/>
-                    <constraint firstItem="POP-NA-pcQ" firstAttribute="top" secondItem="goH-nE-TpT" secondAttribute="bottom" constant="8" id="Ocv-jm-cj9"/>
                     <constraint firstItem="POP-NA-pcQ" firstAttribute="leading" secondItem="jhP-tf-lzL" secondAttribute="trailing" constant="8" id="Otg-pm-Cc5"/>
+                    <constraint firstItem="POP-NA-pcQ" firstAttribute="top" secondItem="goH-nE-TpT" secondAttribute="bottom" constant="8.3300000000000001" id="ebd-oN-s9u"/>
                     <constraint firstItem="jhP-tf-lzL" firstAttribute="leading" secondItem="pYU-ak-kIQ" secondAttribute="leading" constant="16" id="fFa-Wz-Hfy"/>
                     <constraint firstAttribute="trailing" secondItem="goH-nE-TpT" secondAttribute="trailing" constant="16" id="fea-Y1-CdF"/>
                     <constraint firstItem="goH-nE-TpT" firstAttribute="top" secondItem="pYU-ak-kIQ" secondAttribute="top" constant="16" id="m9T-2W-fdk"/>

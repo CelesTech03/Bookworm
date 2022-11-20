@@ -20,7 +20,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         // Do any additional setup after loading the view.
         
-        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=programming&maxResults=30")!
+        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=ios+programming&maxResults=40")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -55,7 +55,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         var author = ""
         if let authorArray = book?["authors"] as? NSArray{
             for i in authorArray {
-                author += (i as? String)! + " "
+                author += (i as? String)! + ", "
             }
         }
         cell.authorLabel.text = author

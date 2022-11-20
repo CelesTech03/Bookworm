@@ -32,7 +32,7 @@ class BookDetailsViewController: UIViewController {
         var author = ""
         if let authorArray = book?["authors"] as? NSArray{
             for i in authorArray {
-                author += (i as? String)! + " "
+                author += (i as? String)! + ", "
             }
         }
         authorsLabel.text = author
