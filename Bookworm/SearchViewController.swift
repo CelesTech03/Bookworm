@@ -19,7 +19,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         
         // Makes Table View first row visible
@@ -51,27 +50,12 @@ class SearchViewController: UIViewController {
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Find selected book
-//        let cell = sender as! UITableViewCell
-//
-//        let indexPath = tableView.indexPath(for: cell)!
-//        let book = searchResults[indexPath.row].volumeInfo
-//
-//        // Pass selected book to the book details view controller
-//        let detailsViewController = segue.destination as! BookDetailsViewController
-//        detailsViewController.book = book
-//
-//        // Deselects row once tapped
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-    
     // MARK: - Helper Methods
     func booksURL(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(
-            format: "https://www.googleapis.com/books/v1/volumes?q="+searchText,
+            format: "https://www.googleapis.com/books/v1/volumes?q=" + searchText,
             encodedText)
         let url = URL(string: urlString)
         return url!
@@ -103,6 +87,16 @@ class SearchViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let detailViewController = segue.destination as! SearchDetailsViewController
+            let indexPath = sender as! IndexPath
+            let searchResult = searchResults[indexPath.row].volumeInfo
+            detailViewController.searchResult = searchResult
+        }
+    }
+    
 }
 
 // MARK: - Search Bar Delegate
@@ -115,7 +109,6 @@ extension SearchViewController: UISearchBarDelegate {
             dataTask?.cancel()
             isLoading = true
             tableView.reloadData()
-            
             
             hasSearched = true
             searchResults = []
@@ -153,7 +146,7 @@ extension SearchViewController: UISearchBarDelegate {
                     self.showNetworkError()
                 }
             }
-            // Call resume() to start the data task
+            // Calls resume() to start the data task
             dataTask?.resume()
         }
     }
@@ -190,7 +183,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         
-        // If search results is in the process of loading, show loading nib cell
+        // If search results is in the process of loading, show "Loading" nib cell
         if isLoading {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: TableView.CellIdentifiers.loadingCell,
@@ -205,14 +198,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return tableView.dequeueReusableCell(
                 withIdentifier: TableView.CellIdentifiers.nothingFoundCell,
                 for: indexPath)
-            // else, return search result nib cell
+            // else, return "Search result" nib cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier:
                                                         TableView.CellIdentifiers.searchResultCell,
                                                      for: indexPath) as! SearchResultCell
             
             let searchResult = searchResults[indexPath.row].volumeInfo
-            // Sets labels on search result cells
+            // Sets labels on "Search result" nib cells
             cell.configure(for: searchResult)
             return cell
         }
@@ -223,6 +216,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // Opens search detail controller when a user taps a cell
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
     func tableView(
@@ -230,7 +225,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         willSelectRowAt indexPath: IndexPath
     ) -> IndexPath? {
         
-        // Disallows selecting no result or is loading cells
+        // Disallows selecting "No result" or is "Loading" cell
         if searchResults.count == 0 || isLoading {
             return nil
         } else {

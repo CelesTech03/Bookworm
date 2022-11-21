@@ -19,7 +19,6 @@ class SearchResultCell: UITableViewCell {
         // Initialization code
     }
     
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -28,14 +27,13 @@ class SearchResultCell: UITableViewCell {
     
     // Cancels any image download that is still in progress
     override func prepareForReuse() {
-      super.prepareForReuse()
-      downloadTask?.cancel()
-      downloadTask = nil
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
     }
     
     // MARK: - Helper Methods
     func configure(for result: SearchResult) {
-        
         titleLabel.text = result.title
         if result.authors.isEmpty {
             authorsLabel.text = "Unknown"

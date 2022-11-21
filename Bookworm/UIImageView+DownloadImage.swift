@@ -9,6 +9,7 @@ import UIKit
 
 extension UIImageView {
     func loadImage(url: URL) -> URLSessionDownloadTask {
+        
         let session = URLSession.shared
         // Creates download task after obtaining reference
         let downloadTask = session.downloadTask(with: url) {

@@ -53,17 +53,16 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.titleLabel.text = book?["title"] as? String
         
         var author = ""
-        if let authorArray = book?["authors"] as? NSArray{
+        if let authorArray = book?["authors"] as? NSArray {
             for i in authorArray {
                 author += (i as? String)! + ", "
             }
         }
-        cell.authorLabel.text = author
         
-        cell.publisherLabel.text = book?["publisher"] as? String
+        cell.authorLabel.text = "By " + author
         
-        if let imgD = book?["imageLinks"] as? NSDictionary{
-            let url = URL(string: imgD["thumbnail"] as! String)
+        if let img = book?["imageLinks"] as? NSDictionary{
+            let url = URL(string: img["thumbnail"] as! String)
             cell.bookImage.downloaded(from: url!)
         }
         

@@ -11,7 +11,6 @@ class BookCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var favButton: UIButton!
     var favorited:Bool = false

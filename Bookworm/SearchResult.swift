@@ -32,7 +32,6 @@ struct SearchResult: Codable {
     let pageCount: Int?
     let averageRating: Double?
     let imageLinks: ImageLinks
-    //    var description: String? = ""
     
 }
 
