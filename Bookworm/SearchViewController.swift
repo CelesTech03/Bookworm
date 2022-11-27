@@ -55,7 +55,7 @@ class SearchViewController: UIViewController {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(
-            format: "https://www.googleapis.com/books/v1/volumes?q=" + searchText,
+            format: "https://www.googleapis.com/books/v1/volumes?q=%@",
             encodedText)
         let url = URL(string: urlString)
         return url!

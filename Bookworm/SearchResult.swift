@@ -17,7 +17,7 @@ struct ResultArray: Codable {
 }
 
 struct BookItem: Codable {
-    //    var id: String
+    //    var id: String 
     let volumeInfo: SearchResult
 }
 
@@ -27,7 +27,7 @@ struct SearchResult: Codable {
     let subtitle: String?
     let authors: [String]
     let publisher: String?
-    let publishedDate: String?
+    let publishedDate: String
     let description: String?
     let pageCount: Int?
     let averageRating: Double?

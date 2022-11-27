@@ -7,23 +7,56 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var favBookList:NSMutableArray = []
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        if UserDefaults.standard.object(forKey: "favList") != nil {
+            favBookList = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favList") as! NSArray)
+
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
+    override func didReceiveMemoryWarning() {
+
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Table View Delegate
+    func tableView(
+      _ tableView: UITableView,
+      didSelectRowAt indexPath: IndexPath
+    ) {
+      tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favBookList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath as IndexPath)
+        
+        cell.textLabel?.text = favBookList.object(at: indexPath.row) as? String
+        
+        return cell
+    }
     
 }

@@ -13,6 +13,17 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    var favListArray:NSMutableArray = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        if UserDefaults.standard.object(forKey: "favList") != nil {
+            
+            favListArray = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favList") as! NSArray)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +49,11 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         task.resume()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books.count
@@ -61,12 +77,38 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.authorLabel.text = "By " + author
         
+        // Sets book image
         if let img = book?["imageLinks"] as? NSDictionary{
             let url = URL(string: img["thumbnail"] as! String)
             cell.bookImage.downloaded(from: url!)
         }
         
+        // Changes like button color
+        if favListArray.contains(cell.titleLabel.text!) {
+            cell.favButton.setImage(UIImage(named:"favor-icon-red"), for: UIControl.State.normal)
+            
+        } else {
+            cell.favButton.setImage(UIImage(named:"favor-icon"), for: UIControl.State.normal)
+        }
+        
+        cell.favButton.tag = indexPath.row
+        cell.favButton.addTarget(self, action:#selector(addToFav) , for: UIControl.Event.touchUpInside)
+        
         return cell
+    }
+    
+    @objc func addToFav(_ sender: UIButton) {
+        
+        let cell = self.tableView.cellForRow(at: NSIndexPath.init(row: sender.tag, section: 0) as IndexPath) as! BookCell
+        
+        if favListArray.contains(cell.titleLabel.text!) {
+            favListArray.remove(cell.titleLabel.text!)
+        } else {
+            favListArray.add(cell.titleLabel.text!)
+        }
+        
+        tableView.reloadData()
+        UserDefaults.standard.set(favListArray, forKey: "favList")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

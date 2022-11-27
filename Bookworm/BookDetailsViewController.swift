@@ -21,7 +21,6 @@ class BookDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // Do any additional setup after loading the view.
         if let img = book?["imageLinks"] as? NSDictionary{
             let url = URL(string: img["thumbnail"] as! String)
@@ -42,16 +41,5 @@ class BookDetailsViewController: UIViewController {
         publisherLabel.text = book["publisher"] as? String
         descriptionLabel.text = book["description"] as? String
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

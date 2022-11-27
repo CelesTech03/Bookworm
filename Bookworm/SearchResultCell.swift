@@ -38,7 +38,7 @@ class SearchResultCell: UITableViewCell {
         if result.authors.isEmpty {
             authorsLabel.text = "Unknown"
         } else {
-            authorsLabel.text = String(format: "%@ (%@)", result.authors.joined(separator: ", "), result.publishedDate!)
+            authorsLabel.text = String(format: "%@ (%@)", result.authors.joined(separator: ", "), result.publishedDate)
         }
         bookImageView.image = UIImage(systemName: "square")
         if let smallURL = URL(string: result.imageLinks.smallThumbnail) {
