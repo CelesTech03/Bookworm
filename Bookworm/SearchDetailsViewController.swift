@@ -15,6 +15,7 @@ class SearchDetailsViewController: UITableViewController {
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var publishedDateLabel: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
     
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
@@ -23,7 +24,6 @@ class SearchDetailsViewController: UITableViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
         if searchResult != nil {
             updateUI()
         }
@@ -35,14 +35,16 @@ class SearchDetailsViewController: UITableViewController {
         if searchResult.authors.isEmpty {
             authorsLabel.text = "Unknown"
         } else {
-            authorsLabel.text = "By " + searchResult.authors.joined(separator: ", ")
+            authorsLabel.text = "By " + searchResult.authors[0]
         }
-        if let smallURL = URL(string: searchResult.imageLinks.smallThumbnail) {
+        
+        if let smallURL = URL(string: (searchResult.imageLinks.smallThumbnail!)) {
             downloadTask = bookImage.loadImage(url: smallURL)
         }
         publisherLabel.text = searchResult.publisher
         descriptionLabel.text = searchResult.description
         publishedDateLabel.text = searchResult.publishedDate
+        categoriesLabel.text = searchResult.categories[0]
     }
     
     // MARK: - Table View Delegate

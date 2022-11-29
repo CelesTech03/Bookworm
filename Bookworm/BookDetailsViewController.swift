@@ -15,6 +15,7 @@ class BookDetailsViewController: UITableViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     var book: [String:Any]!
     
@@ -37,6 +38,10 @@ class BookDetailsViewController: UITableViewController {
         publishedDateLabel.text = book["publishedDate"] as? String
         publisherLabel.text = book["publisher"] as? String
         descriptionLabel.text = book["description"] as? String
+        if let categoriesArray = book?["categories"] as? NSArray {
+            let category = categoriesArray[0] as? String
+            categoryLabel.text = category
+        }
     }
     
     // MARK: - Table View Delegate

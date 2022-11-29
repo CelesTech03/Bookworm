@@ -40,6 +40,7 @@ class SearchViewController: UIViewController {
         tableView.register(
             cellNib,
             forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
+        
     }
     
     struct TableView {
