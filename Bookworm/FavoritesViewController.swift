@@ -19,7 +19,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         if UserDefaults.standard.object(forKey: "favList") != nil {
             favBookList = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favList") as! NSArray)
-
+            
             self.tableView.reloadData()
         }
     }
@@ -33,18 +33,18 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func didReceiveMemoryWarning() {
-
+        
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-
+        
     }
     
     // MARK: - Table View Delegate
     func tableView(
-      _ tableView: UITableView,
-      didSelectRowAt indexPath: IndexPath
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
     ) {
-      tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

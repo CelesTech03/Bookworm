@@ -68,14 +68,10 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.titleLabel.text = book?["title"] as? String
         
-        var author = ""
-        if let authorArray = book?["authors"] as? NSArray {
-            for i in authorArray {
-                author += (i as? String)! + ", "
-            }
+        if let authorArray = book?["authors"] as? NSArray{
+            let author = authorArray[0] as? String
+            cell.authorLabel.text = "By " + (author ?? "No author")
         }
-        
-        cell.authorLabel.text = "By " + author
         
         // Sets book image
         if let img = book?["imageLinks"] as? NSDictionary{

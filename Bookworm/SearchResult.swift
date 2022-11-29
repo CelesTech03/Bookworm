@@ -12,12 +12,10 @@ func < (lhs: BookItem, rhs: BookItem) -> Bool {
 }
 
 struct ResultArray: Codable {
-    var totalItems = 0
     var items: [BookItem]
 }
 
-struct BookItem: Codable {
-    //    var id: String 
+struct BookItem: Codable { 
     let volumeInfo: SearchResult
 }
 

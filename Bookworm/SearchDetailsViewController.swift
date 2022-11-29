@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchDetailsViewController: UIViewController {
+class SearchDetailsViewController: UITableViewController {
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -35,7 +35,7 @@ class SearchDetailsViewController: UIViewController {
         if searchResult.authors.isEmpty {
             authorsLabel.text = "Unknown"
         } else {
-            authorsLabel.text = searchResult.authors.joined(separator: ", ")
+            authorsLabel.text = "By " + searchResult.authors.joined(separator: ", ")
         }
         if let smallURL = URL(string: searchResult.imageLinks.smallThumbnail) {
             downloadTask = bookImage.loadImage(url: smallURL)
@@ -43,6 +43,23 @@ class SearchDetailsViewController: UIViewController {
         publisherLabel.text = searchResult.publisher
         descriptionLabel.text = searchResult.description
         publishedDateLabel.text = searchResult.publishedDate
+    }
+    
+    // MARK: - Table View Delegate
+    override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // Allows static cell resizing
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
 }
