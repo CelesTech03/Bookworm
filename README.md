@@ -1,6 +1,5 @@
 # Bookworm
-Bookworm is a book finder app that allows users to search for and discover new books using the Google Books API. It displays the resulting books with corresponding data. 
-Users are be able to like a book in order to add it to a favorites screen.
+Bookworm is a book finder app that allows users to search for and discover new books from the [The Google Books API](https://developers.google.com/books/docs/overview). 
 
 ## User Stories
 
@@ -8,9 +7,10 @@ The following functionality is completed:
 
 - [x] User can tap a cell to see more details about a particular book
 - [x] User can tap a tab bar button to view search or favorites screen
-- [x] User can search for a book by title or authors
+- [x] User can search for a book by title or author
 - [x] Activity indicator that shows when a search is going on so that the user knows something is happening
-
+- [x] User can tap a search result cell to see details about the book
+- [x] User can tap the heart button on a book to add it to the favorites screen 
 
 ## Video Walkthrough
 Here's a walkthrough of implemented user stories:
