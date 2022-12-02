@@ -32,11 +32,8 @@ class SearchDetailsViewController: UITableViewController {
     // MARK: - Helper Methods
     func updateUI() {
         titleLabel.text = searchResult.title
-        if searchResult.authors.isEmpty {
-            authorsLabel.text = "Unknown"
-        } else {
-            authorsLabel.text = "By " + searchResult.authors[0]
-        }
+
+        authorsLabel.text = "By " + (searchResult.authors?[0] ?? "No Author")
         
         if let smallURL = URL(string: (searchResult.imageLinks.smallThumbnail!)) {
             downloadTask = bookImage.loadImage(url: smallURL)
@@ -44,7 +41,7 @@ class SearchDetailsViewController: UITableViewController {
         publisherLabel.text = searchResult.publisher
         descriptionLabel.text = searchResult.description
         publishedDateLabel.text = searchResult.publishedDate
-        categoriesLabel.text = searchResult.categories[0]
+        categoriesLabel.text = searchResult.categories?[0]
     }
     
     // MARK: - Table View Delegate

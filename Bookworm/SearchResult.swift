@@ -22,10 +22,10 @@ struct BookItem: Codable {
 struct SearchResult: Codable {
     
     let title: String
-    let categories: [String]
-    let authors: [String]
+    let categories: [String]?
+    let authors: [String]?
     let publisher: String?
-    let publishedDate: String
+    let publishedDate: String?
     let description: String?
     let imageLinks: ImageLinks
     

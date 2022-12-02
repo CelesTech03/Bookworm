@@ -40,11 +40,7 @@ class SearchResultCell: UITableViewCell {
     // MARK: - Helper Methods
     func configure(for result: SearchResult) {
         titleLabel.text = result.title
-        if result.authors.isEmpty {
-            authorsLabel.text = "Unknown"
-        } else {
-            authorsLabel.text = String(format: "%@ (%@)", result.authors[0], result.publishedDate)
-        }
+        authorsLabel.text = result.authors?[0]
         bookImageView.image = UIImage(systemName: "square")
         if let smallURL = URL(string: result.imageLinks.smallThumbnail!) {
             downloadTask = bookImageView.loadImage(url: smallURL)
