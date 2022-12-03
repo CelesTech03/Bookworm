@@ -1,5 +1,5 @@
 # Bookworm
-Bookworm is a book finder app that allows users to search for and discover new books from [The Google Books API](https://developers.google.com/books/docs/overview). 
+Bookworm is a book finder app that allows users to search for and discover new books from [The Google Books API](https://developers.google.com/books/docs/overview). Application built from scratch for my iOS Development final project.
 
 ## User Stories
 
