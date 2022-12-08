@@ -16,7 +16,7 @@ The following functionality is completed:
 Here's a walkthrough of implemented user stories:
 ### iPhone 14 Pro
 
-https://user-images.githubusercontent.com/57969388/205408659-357056f2-8708-4840-af16-1817e2985b3b.mp4
+https://user-images.githubusercontent.com/57969388/206555137-db38b48a-035a-46e8-ae31-c460cb0ef5f5.mov
 
 ## Figma Wireframes
 
