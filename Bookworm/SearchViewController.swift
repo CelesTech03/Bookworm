@@ -56,7 +56,7 @@ class SearchViewController: UIViewController {
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(
-            format: "https://www.googleapis.com/books/v1/volumes?q=%@",
+            format: "https://www.googleapis.com/books/v1/volumes?q=%@&maxResults=20",
             encodedText)
         let url = URL(string: urlString)
         return url!
@@ -157,7 +157,6 @@ extension SearchViewController: UISearchBarDelegate {
         return .topAttached
     }
 }
-
 
 // MARK: - Table View Delegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {

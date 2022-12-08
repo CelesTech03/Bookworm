@@ -512,30 +512,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="URm-Kd-6E8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="URm-Kd-6E8">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="91" id="zIi-MI-fRC">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="favCell" rowHeight="109" id="zIi-MI-fRC" customClass="favCell" customModule="Bookworm" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zIi-MI-fRC" id="Xxe-hj-mjO">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycG-6j-rZC">
-                                                    <rect key="frame" x="20" y="11" width="364" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Title)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycG-6j-rZC">
+                                                    <rect key="frame" x="20" y="11" width="353" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(author)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OW-NT-1HR">
+                                                    <rect key="frame" x="20" y="43" width="353" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="Authors"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ycG-6j-rZC" secondAttribute="trailing" constant="9" id="XX0-ua-DGx"/>
-                                                <constraint firstItem="ycG-6j-rZC" firstAttribute="top" secondItem="Xxe-hj-mjO" secondAttribute="top" constant="11" id="kJe-Gi-RUG"/>
-                                                <constraint firstItem="ycG-6j-rZC" firstAttribute="leading" secondItem="Xxe-hj-mjO" secondAttribute="leading" constant="20" symbolic="YES" id="kPx-p1-C3j"/>
+                                                <constraint firstItem="ycG-6j-rZC" firstAttribute="leading" secondItem="Xxe-hj-mjO" secondAttribute="leadingMargin" id="D5N-Zn-ZIb"/>
+                                                <constraint firstItem="4OW-NT-1HR" firstAttribute="trailing" secondItem="Xxe-hj-mjO" secondAttribute="trailingMargin" id="Weh-rA-wh6"/>
+                                                <constraint firstItem="4OW-NT-1HR" firstAttribute="top" secondItem="ycG-6j-rZC" secondAttribute="bottom" constant="8" symbolic="YES" id="ZfF-Er-FKe"/>
+                                                <constraint firstItem="4OW-NT-1HR" firstAttribute="leading" secondItem="Xxe-hj-mjO" secondAttribute="leadingMargin" id="evH-8d-j3b"/>
+                                                <constraint firstItem="ycG-6j-rZC" firstAttribute="top" secondItem="Xxe-hj-mjO" secondAttribute="topMargin" id="hnI-V7-dLx"/>
+                                                <constraint firstItem="ycG-6j-rZC" firstAttribute="trailing" secondItem="Xxe-hj-mjO" secondAttribute="trailingMargin" id="lHb-lG-Unn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="4OW-NT-1HR" id="DuW-5X-VBR"/>
+                                            <outlet property="titleLabel" destination="ycG-6j-rZC" id="mOA-fW-ege"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

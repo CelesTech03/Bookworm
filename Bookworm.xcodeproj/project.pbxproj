@@ -20,6 +20,7 @@
 		AA4D2ACE2915E94C00A936D7 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA4D2ACC2915E94C00A936D7 /* Bookworm.xcdatamodeld */; };
 		AA4D2AD02915E94D00A936D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */; };
 		AA4D2AD32915E94D00A936D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */; };
+		AACED093294267F6009B883E /* favCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACED092294267F6009B883E /* favCell.swift */; };
 		AAD25E1B292C2DEF005F6A01 /* SearchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD25E1A292C2DEF005F6A01 /* SearchDetailsViewController.swift */; };
 		AAFC33EF2917134A0036BD54 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33EE2917134A0036BD54 /* BookCell.swift */; };
 		AAFC33F1291723850036BD54 /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */; };
@@ -43,6 +44,7 @@
 		AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA4D2AD22915E94D00A936D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4D2AD42915E94D00A936D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AACED092294267F6009B883E /* favCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favCell.swift; sourceTree = "<group>"; };
 		AAD25E1A292C2DEF005F6A01 /* SearchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailsViewController.swift; sourceTree = "<group>"; };
 		AAFC33EE2917134A0036BD54 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
 				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
 				AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */,
+				AACED092294267F6009B883E /* favCell.swift */,
 			);
 			path = Bookworm;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			files = (
 				AA4D2AC82915E94C00A936D7 /* BooksViewController.swift in Sources */,
 				AA1E1FEB2922AF15005EF39E /* SearchResult.swift in Sources */,
+				AACED093294267F6009B883E /* favCell.swift in Sources */,
 				AAFC33F329172F4B0036BD54 /* SearchViewController.swift in Sources */,
 				AAFC33F52917398A0036BD54 /* FavoritesViewController.swift in Sources */,
 				AA1E1FEF2922C83A005EF39E /* SearchResultCell.swift in Sources */,
@@ -339,7 +343,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -368,7 +372,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

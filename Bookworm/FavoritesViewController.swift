@@ -9,7 +9,8 @@ import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var favBookList:NSMutableArray = []
+    var favTitleList:NSMutableArray = []
+    var favAuthorList:NSMutableArray = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,8 +18,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
         super.viewWillAppear(animated)
         
-        if UserDefaults.standard.object(forKey: "favList") != nil {
-            favBookList = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favList") as! NSArray)
+        if UserDefaults.standard.object(forKey: "favTitle") != nil && UserDefaults.standard.object(forKey: "favAuthor") != nil {
+            favTitleList = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favTitle") as! NSArray)
+            favAuthorList = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favAuthor") as! NSArray)
             
             self.tableView.reloadData()
         }
@@ -48,13 +50,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favBookList.count
+        return favTitleList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath as IndexPath)
         
-        cell.textLabel?.text = favBookList.object(at: indexPath.row) as? String
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell") as! favCell
+        
+        cell.titleLabel.text = favTitleList.object(at: indexPath.row) as? String
+        cell.authorLabel.text = favAuthorList.object(at: indexPath.row) as? String
         
         return cell
     }

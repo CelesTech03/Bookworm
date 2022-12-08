@@ -27,10 +27,10 @@ struct SearchResult: Codable {
     let publisher: String?
     let publishedDate: String?
     let description: String?
-    let imageLinks: ImageLinks
+    let imageLinks: ImageLinks?
     
 }
 
 struct ImageLinks: Codable {
-    let smallThumbnail, thumbnail: String?
+    let smallThumbnail, thumbnail: String
 }

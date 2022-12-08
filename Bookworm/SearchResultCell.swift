@@ -42,7 +42,7 @@ class SearchResultCell: UITableViewCell {
         titleLabel.text = result.title
         authorsLabel.text = result.authors?[0]
         bookImageView.image = UIImage(systemName: "square")
-        if let smallURL = URL(string: result.imageLinks.smallThumbnail!) {
+        if let smallURL = URL(string: result.imageLinks?.smallThumbnail ?? "No image") {
             downloadTask = bookImageView.loadImage(url: smallURL)
         }
     }
