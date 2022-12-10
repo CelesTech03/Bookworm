@@ -34,7 +34,6 @@ class BookDetailsViewController: UITableViewController {
             authorsLabel.text = "By " + (author ?? "No author")
         }
         
-        //        pageCountLabel.text = book["pageCount"] as? String
         publishedDateLabel.text = book["publishedDate"] as? String
         publisherLabel.text = book["publisher"] as? String
         descriptionLabel.text = book["description"] as? String

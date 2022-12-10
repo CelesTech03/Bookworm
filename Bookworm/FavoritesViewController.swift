@@ -32,12 +32,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
-    }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
         
     }
     
@@ -50,7 +44,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favTitleList.count
+        return favAuthorList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

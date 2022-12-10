@@ -91,6 +91,7 @@
 				AAD25E1A292C2DEF005F6A01 /* SearchDetailsViewController.swift */,
 				AA1E1FEA2922AF15005EF39E /* SearchResult.swift */,
 				AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */,
+				AACED092294267F6009B883E /* favCell.swift */,
 				AA4D2AC92915E94C00A936D7 /* Main.storyboard */,
 				AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */,
 				AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */,
@@ -101,7 +102,6 @@
 				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
 				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
 				AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */,
-				AACED092294267F6009B883E /* favCell.swift */,
 			);
 			path = Bookworm;
 			sourceTree = "<group>";

@@ -19,11 +19,15 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        if UserDefaults.standard.object(forKey: "favTitle") != nil && UserDefaults.standard.object(forKey: "favAuthor") != nil {
-            
+        if UserDefaults.standard.object(forKey: "favTitle") != nil && UserDefaults.standard.object(forKey: "favAuthor") != nil  {
             favTitleArray = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favTitle") as! NSArray)
             favAuthorArray = NSMutableArray.init(array: UserDefaults.standard.object(forKey: "favAuthor") as! NSArray)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func viewDidLoad() {
@@ -51,11 +55,6 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         task.resume()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return books.count
@@ -81,16 +80,8 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.bookImage.downloaded(from: url!)
         }
         
-        // Changes like button color
-        if favTitleArray.contains(cell.titleLabel.text!) {
-            cell.favButton.setImage(UIImage(named:"favor-icon-red"), for: UIControl.State.normal)
-            
-        } else {
-            cell.favButton.setImage(UIImage(named:"favor-icon"), for: UIControl.State.normal)
-        }
-        
         cell.favButton.tag = indexPath.row
-        cell.favButton.addTarget(self, action:#selector(addToFav) , for: UIControl.Event.touchUpInside)
+        cell.favButton.addTarget(self, action:#selector(addToFav), for: UIControl.Event.touchUpInside)
         
         return cell
     }
@@ -107,7 +98,6 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
             favAuthorArray.add(cell.authorLabel.text!)
         }
         
-        tableView.reloadData()
         UserDefaults.standard.set(favTitleArray, forKey: "favTitle")
         UserDefaults.standard.set(favAuthorArray, forKey: "favAuthor")
     }
