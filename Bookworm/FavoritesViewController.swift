@@ -13,6 +13,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     var favAuthorList:NSMutableArray = []
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var darkSwitch: UISwitch!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -33,6 +34,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
+        UserDefaults.standard.set(darkSwitch.isOn, forKey: "darkAction")
+    }
+    
+    
+    @IBAction func toggleDark(_ sender: UISwitch) {
+        
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let appDelegate = windowScene?.windows.first
+        if sender.isOn {
+            appDelegate?.overrideUserInterfaceStyle = .dark
+            return
+        } else {
+            appDelegate?.overrideUserInterfaceStyle = .light
+        }
+        UserDefaults.standard.set(darkSwitch.isOn, forKey: "darkAction")
     }
     
     // MARK: - Table View Delegate
