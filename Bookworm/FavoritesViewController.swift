@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,6 +15,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var darkSwitch: UISwitch!
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -34,17 +37,16 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        UserDefaults.standard.set(darkSwitch.isOn, forKey: "darkAction")
+        darkSwitch.isOn = UserDefaults.standard.bool(forKey: "darkAction")
+        
     }
-    
     
     @IBAction func toggleDark(_ sender: UISwitch) {
         
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let appDelegate = windowScene?.windows.first
-        if sender.isOn {
+        if darkSwitch.isOn == true {
             appDelegate?.overrideUserInterfaceStyle = .dark
-            return
         } else {
             appDelegate?.overrideUserInterfaceStyle = .light
         }

@@ -520,22 +520,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e5O-HK-fCq">
-                                            <rect key="frame" x="338" y="6" width="49" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e5O-HK-fCq">
+                                            <rect key="frame" x="336" y="6" width="51" height="31"/>
                                             <connections>
                                                 <action selector="toggleDark:" destination="XV3-cT-eZk" eventType="valueChanged" id="22N-Kn-7V9"/>
                                             </connections>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-12-92B">
-                                            <rect key="frame" x="242" y="11" width="88" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-12-92B">
+                                            <rect key="frame" x="8" y="11" width="322" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="TvM-12-92B" secondAttribute="bottom" constant="12" id="6XU-KV-szt"/>
+                                        <constraint firstItem="TvM-12-92B" firstAttribute="top" secondItem="1ob-e7-cIl" secondAttribute="top" constant="11" id="Q2k-lw-00d"/>
+                                        <constraint firstAttribute="trailing" secondItem="e5O-HK-fCq" secondAttribute="trailing" constant="8" id="fVD-FH-kOD"/>
+                                        <constraint firstAttribute="bottom" secondItem="e5O-HK-fCq" secondAttribute="bottom" constant="7" id="hax-aj-OZ7"/>
+                                        <constraint firstItem="e5O-HK-fCq" firstAttribute="top" secondItem="1ob-e7-cIl" secondAttribute="top" constant="6" id="m6G-EZ-Tc0"/>
+                                        <constraint firstItem="e5O-HK-fCq" firstAttribute="leading" secondItem="TvM-12-92B" secondAttribute="trailing" constant="6" id="uHs-zV-y9p"/>
+                                        <constraint firstItem="TvM-12-92B" firstAttribute="leading" secondItem="1ob-e7-cIl" secondAttribute="leading" constant="8" id="wod-0X-fIg"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="favCell" rowHeight="95" id="zIi-MI-fRC" customClass="favCell" customModule="Bookworm" customModuleProvider="target">

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class BooksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,6 +16,8 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var favTitleArray:NSMutableArray = []
     var favAuthorArray:NSMutableArray = []
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     override func viewWillAppear(_ animated: Bool) {
         
