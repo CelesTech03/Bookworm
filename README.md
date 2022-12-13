@@ -17,9 +17,8 @@ The following functionality is completed:
 Here's a walkthrough of implemented user stories:
 ### iPhone 14 Pro
 
-https://user-images.githubusercontent.com/57969388/206555137-db38b48a-035a-46e8-ae31-c460cb0ef5f5.mov
+https://user-images.githubusercontent.com/57969388/207468732-899bb47a-3659-4bcf-a903-82fad46459fb.mov
 
 ## Figma Wireframes
 
 ![Book Finder App](https://user-images.githubusercontent.com/57969388/202872658-b63af694-e6b0-4003-81e0-18807f7ef8c5.png)
-
