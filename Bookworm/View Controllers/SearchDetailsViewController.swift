@@ -31,10 +31,9 @@ class SearchDetailsViewController: UITableViewController {
     
     // MARK: - Helper Methods
     func updateUI() {
+        // Sets labels with book data
         titleLabel.text = searchResult.title
-        
         authorsLabel.text = "By " + (searchResult.authors?[0] ?? "No Author")
-        
         if let smallURL = URL(string: (searchResult.imageLinks?.smallThumbnail ?? "No Image")) {
             downloadTask = bookImage.loadImage(url: smallURL)
         }

@@ -41,8 +41,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    // Reference: https://www.youtube.com/watch?v=0gQKlkV39M8
     @IBAction func toggleDark(_ sender: UISwitch) {
-        
+
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let appDelegate = windowScene?.windows.first
         if darkSwitch.isOn == true {

@@ -88,28 +88,52 @@
 		AA4D2AC22915E94C00A936D7 /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				AAFAACDE294A76C0003927DD /* Data Models */,
+				AAFAACDF294A76D3003927DD /* View Controllers */,
+				AAFAACE0294A76E5003927DD /* Resources */,
 				AA4D2AC32915E94C00A936D7 /* AppDelegate.swift */,
-				AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */,
-				AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */,
-				AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */,
-				AAFC33EE2917134A0036BD54 /* BookCell.swift */,
-				AAFC33F229172F4B0036BD54 /* SearchViewController.swift */,
-				AAD25E1A292C2DEF005F6A01 /* SearchDetailsViewController.swift */,
-				AA1E1FEA2922AF15005EF39E /* SearchResult.swift */,
-				AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */,
-				AACED092294267F6009B883E /* favCell.swift */,
-				AA4D2AC92915E94C00A936D7 /* Main.storyboard */,
-				AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */,
-				AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */,
-				AA4D2AD42915E94D00A936D7 /* Info.plist */,
 				AA4D2ACC2915E94C00A936D7 /* Bookworm.xcdatamodeld */,
-				AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */,
-				AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */,
-				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
-				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
-				AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */,
+				AA4D2AD42915E94D00A936D7 /* Info.plist */,
+				AA4D2AC52915E94C00A936D7 /* SceneDelegate.swift */,
 			);
 			path = Bookworm;
+			sourceTree = "<group>";
+		};
+		AAFAACDE294A76C0003927DD /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E1FEA2922AF15005EF39E /* SearchResult.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		AAFAACDF294A76D3003927DD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AAFC33EE2917134A0036BD54 /* BookCell.swift */,
+				AAFC33F0291723850036BD54 /* BookDetailsViewController.swift */,
+				AA4D2AC72915E94C00A936D7 /* BooksViewController.swift */,
+				AACED092294267F6009B883E /* favCell.swift */,
+				AAFC33F42917398A0036BD54 /* FavoritesViewController.swift */,
+				AAD25E1A292C2DEF005F6A01 /* SearchDetailsViewController.swift */,
+				AA1E1FEE2922C83A005EF39E /* SearchResultCell.swift */,
+				AAFC33F229172F4B0036BD54 /* SearchViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AAFAACE0294A76E5003927DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA4D2ACF2915E94D00A936D7 /* Assets.xcassets */,
+				AA4D2AD12915E94D00A936D7 /* LaunchScreen.storyboard */,
+				AA0EBF2F292971ED005C7F6C /* LoadingCell.xib */,
+				AA4D2AC92915E94C00A936D7 /* Main.storyboard */,
+				AA1E1FF02922CDF7005EF39E /* NothingFoundCell.xib */,
+				AA1E1FEC2922BC3C005EF39E /* SearchResultCell.xib */,
+				AA0EBF312929935F005C7F6C /* UIImageView+DownloadImage.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -47,6 +47,8 @@ class BookCell: UITableViewCell {
             self.setFavorite(false)
         }
         
+        // Reference: https://stackoverflow.com/questions/31320819/scale-uibutton-animation-swift
+        // Adds animation to heart button
         UIView.animate(withDuration: 0.2,
                        animations: { 
             self.favButton.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
@@ -56,7 +58,6 @@ class BookCell: UITableViewCell {
                 self.favButton.transform = CGAffineTransform.identity
             }
         })
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

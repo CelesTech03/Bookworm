@@ -30,7 +30,6 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override func viewDidLoad() {
@@ -63,6 +62,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return books.count
     }
     
+    // Retrieves API data for each book cell label/UIImage
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
@@ -89,6 +89,7 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    // Reference: https://stackoverflow.com/questions/38469868/creating-a-favourites-section-in-an-app
     @objc func addToFav(_ sender: UIButton) {
         
         let cell = self.tableView.cellForRow(at: NSIndexPath.init(row: sender.tag, section: 0) as IndexPath) as! BookCell
@@ -122,6 +123,8 @@ class BooksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 }
 
+// Reference: https://www.youtube.com/watch?v=CiTq798lHgQ
+// Gets API image data
 extension UIImageView {
     
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {

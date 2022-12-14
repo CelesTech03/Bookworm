@@ -2,7 +2,7 @@
 //  Favorites+CoreDataProperties.swift
 //  Bookworm
 //
-//  Created by Celeste Urena on 12/13/22.
+//  Created by Celeste Urena on 12/08/22.
 //
 //
 
